@@ -65,9 +65,8 @@ Observable.fromArray(new String[] {"12", "21", "11"})
 
 #### 재귀
 
-- 여기서 Subject를 사용했는데, subject를 subscript 한 곳에서 다음 개미수열을 생성하여
-subject의 onNext 로 전달하여 subject 의 다음 입력값으로 사용되게 한다.
-
+- 여기서 Subject를 사용했는데, subject를 subscript 한 곳에서 다음 개미수열을 생성하고
+onNext 로 전달하여 subject의 다음 입력값으로 사용한다.
 - 수열의 처음은 "1"로 시작하므로 기본값 "1"을 가진 BehaviorSubject 를 사용한다.
 
 ```java
