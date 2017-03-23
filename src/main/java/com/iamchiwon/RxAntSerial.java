@@ -17,16 +17,14 @@ public class RxAntSerial {
 			// BehaviorSubject 의 디폴트 값에 의해 처음 "1"을 받는다.
 			// "1"을 group 과 reduce 과정으로 다음 개미수열을 생성하여
 			// emiiter를 통해 전달한다.
-			innerSubject.subscribe(arr -> {
+			innerSubject.subscribe(current -> {
 
-				group(arr).reduce((pre, post) -> {
-					return pre + post;
-				}).subscribe(serial -> {
+				group(current).reduce((pre, post) -> pre + post).subscribe(next -> {
 					if (!emitter.isDisposed()) {
-						emitter.onNext(serial); // 전달
+						emitter.onNext(next); // 전달
 
 						// 결과의 숫자열을 다음번 연산을 위한 값으로 사용한다.
-						innerSubject.onNext(serial);
+						innerSubject.onNext(next);
 					}
 				});
 
